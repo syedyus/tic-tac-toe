@@ -1,4 +1,4 @@
---touch = hash("touch")
+touch = hash("touch")
 function table(self) 
 	self.board = {
 		{ "", "", "" },
@@ -6,7 +6,6 @@ function table(self)
 		{ "", "", "" },
 	}
 
-	
 end
 function placing_tiles(self)
 	if self.input and self.check then
@@ -20,8 +19,6 @@ function placing_tiles(self)
 		end
 	end
 end
-			
-	
 
 function init(self)
 	
@@ -34,22 +31,11 @@ function final(self)
 	msg.post(".", "release_input_focus")
 end
 
-function update(self, dt)
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
-end
-
-function fixed_update(self, dt)
-	-- This function is only called if 'Use Fixed Timestep' is enabled in the Physics section of game.project
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
-end
-
 function on_message(self, message_id, message, sender)
-	if message_id == hash("square_1") then
-		self.check=true
+	for i=1, 9, 1 do
+		if message_id == hash("square_" .. i) then
+			print('message_recieved', i)
+		end
 	end
 end
 
@@ -57,10 +43,4 @@ function on_input(self, action_id, action)
 	if action_id == touch and action.pressed then
 		self.input = true
 	end
-end
-
-function on_reload(self)
-	-- Add reload-handling code here
-	-- Learn more: https://defold.com/manuals/hot-reload/
-	-- Remove this function if not needed
 end
