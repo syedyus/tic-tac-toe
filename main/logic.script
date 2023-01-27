@@ -21,7 +21,13 @@ function placing_tiles(self)
 end
 
 function init(self)
-	
+	local width, height = window.get_size()
+	for i=-1, 1, 1 do
+		for j=-1, 1, 1 do
+			local pos = vmath.vector3(width/2 + i * 146.5, height/2 + j * 146.5, 1)
+			factory.create('#board_factory', pos)
+		end
+	end
 	msg.post(".", "acquire_input_focus")
 	self.turn = false
 	placing_tiles(self)
@@ -34,7 +40,12 @@ end
 function on_message(self, message_id, message, sender)
 	for i=1, 9, 1 do
 		if message_id == hash("square_" .. i) then
-			print('message_recieved', i)
+			if true then
+				local pos = message[1]
+				print(pos)
+				local fac = factory.create("#nought_spawner", pos)
+				
+			end
 		end
 	end
 end
