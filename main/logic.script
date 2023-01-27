@@ -8,10 +8,10 @@ function table(self)
 
 	
 end
-function placing_tiles(self, action_id, action, message_id, message, sender)
-	if action_id == touch and action.pressed and message_id == hash("square_1") then
-		if  self.turn=  then
-			pos = vmath.vector3(action.x,action.y,0)
+function placing_tiles(self)
+	if self.input and self.check then
+		if  self.turn  then
+			pos = vmath.vector3(120,120,0)
 			factory.create("#cross_spawner",pos)
 			print("works")
 		elseif self.turn then
@@ -27,7 +27,7 @@ function init(self)
 	
 	msg.post(".", "acquire_input_focus")
 	self.turn = false
-	placing_tiles(self, action_id, action, message_id, message, sender)
+	placing_tiles(self)
 end
 
 function final(self)
@@ -48,21 +48,15 @@ function fixed_update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	-- Add message-handling code here
-	-- Learn more: https://defold.com/manuals/message-passing/
-	-- Remove this function if not needed
+	if message_id == hash("square_1") then
+		self.check=true
+	end
 end
 
 function on_input(self, action_id, action)
-	-- Add input-handling code here. The game object this script is attached to
-	-- must have acquired input focus:
-	--
-	--    msg.post(".", "acquire_input_focus")
-	--
-	-- All mapped input bindings will be received. Mouse and touch input will
-	-- be received regardless of where on the screen it happened.
-	-- Learn more: https://defold.com/manuals/input/
-	-- Remove this function if not needed
+	if action_id == touch and action.pressed then
+		self.input = true
+	end
 end
 
 function on_reload(self)
