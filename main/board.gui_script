@@ -1,0 +1,51 @@
+function init(self)
+	msg.post(".","acquire_input_focus")
+end
+
+function final(self)
+	msg.post(".","release_input_focus")
+end
+
+function update(self, dt)
+
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	if action.pressed and gui.pick_node(gui.get_node("square_1"), action.x, action.y) then
+		msg.post("/piece_spawner#logic", "square_1")
+		
+	elseif action.pressed and gui.pick_node(gui.get_node("square_2"), action.x, action.y) then
+		msg.post("/piece_spawner#logic", "square_2")
+	elseif action.pressed and gui.pick_node(gui.get_node("square_3"), action.x, action.y) then
+		msg.post("/piece_spawner#logic", "square_3")
+
+	elseif action.pressed and gui.pick_node(gui.get_node("square_4"), action.x, action.y) then
+		msg.post("/piece_spawner#logic", "square_4")
+	elseif action.pressed and gui.pick_node(gui.get_node("square_5"), action.x, action.y) then
+		msg.post("/piece_spawner#logic", "square_5")
+
+	elseif action.pressed and gui.pick_node(gui.get_node("square_6"), action.x, action.y) then
+		msg.post("/piece_spawner#logic", "square_6")
+	
+	elseif action.pressed and gui.pick_node(gui.get_node("square_7"), action.x, action.y) then
+		msg.post("/piece_spawner#logic", "square_7")
+
+	elseif action.pressed and gui.pick_node(gui.get_node("square_8"), action.x, action.y) then
+		msg.post("/piece_spawner#logic", "square_8")
+	elseif action.pressed and gui.pick_node(gui.get_node("square_9"), action.x, action.y) then
+		msg.post("/piece_spawner#logic", "square_9")
+	end
+
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end
